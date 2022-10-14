@@ -21,12 +21,14 @@ while True:
     print("_________________________________________")
     print("\n[1] - Add Transactions")
     print("[2] - View completed Transactions")
+
     print("[3] - View a Transaction")
     print("[4] - View a block")
     print("[5] - View the Blockchain")
     print("[6] - View Timestamp of a transaction")
     print("[7] - View unverified transactions")
     print("[8] - Add Seller And Property")
+    print("[9] - View completed Transactions by PID")
     print("\n[e] - Exit")
     choice = input("\n>>> Choose a query to execute: ")
 
@@ -42,6 +44,10 @@ while True:
 
     elif choice == "2":
         ViewTransactions.viewTransactions(blockchain)
+
+    elif choice == "9":
+        pid = input("\n>>> Property ID: ")
+        ViewTransactions.viewTransactionsbyPID(blockchain, pid)
 
     elif choice == "3":
         ViewTransaction.viewTransaction(blockchain)

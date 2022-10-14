@@ -12,15 +12,39 @@ def viewTransactions( blockchain ):
         print("\nNo completed transactions to display!!!")
         return
 
-    print("Transaction ID      Customer Name      Amount(INR)      Timestamp")
+    print("Transaction ID      Seller ID      Property ID       Buyer ID      Timestamp")
     print("-------------------------------------------------------------------------------------")
-    transaction_quote = "{}      {}      {}      {}"
+    transaction_quote = "{}      {}      {}      {}      {}"
 
     for block in blockchain.chain:
         for transaction in block['transactions_list']:
             print(transaction_quote.format(
                                         addSpaces(transaction[0], len("Transaction ID")), 
-                                        addSpaces(transaction[2], len("Customer Name")), 
-                                        addSpaces(transaction[1], len("Amount(INR)")), 
+                                        addSpaces(transaction[1], len("Seller ID")), 
+                                        addSpaces(transaction[2], len("Property ID")),
+                                        addSpaces(transaction[3], len("Buyer ID")),
+                                        addSpaces(transaction[4], len("Timestamp")), 
                                         transaction[3]
                                     ))
+def viewTransactionsbyPID( blockchain ,pid):
+
+    if len(blockchain.chain) == 0:
+        print("\nNo completed transactions to display!!!")
+        return
+
+    print("Transaction ID      Seller ID      Property ID       Buyer ID      Timestamp")
+    print("-------------------------------------------------------------------------------------")
+    transaction_quote = "{}      {}      {}      {}      {}"
+
+    for block in blockchain.chain:
+        for transaction in block['transactions_list']:
+            if(pid == transaction[2]):
+                print(transaction_quote.format(
+                                            addSpaces(transaction[0], len("Transaction ID")), 
+                                            addSpaces(transaction[1], len("Seller ID")), 
+                                            addSpaces(transaction[2], len("Property ID")),
+                                            addSpaces(transaction[3], len("Buyer ID")),
+                                            addSpaces(transaction[4], len("Timestamp")), 
+                                            transaction[3]
+                                        ))
+                                    

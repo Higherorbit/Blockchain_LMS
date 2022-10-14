@@ -6,6 +6,7 @@ import MerkleTree
 import json
 # import AddUser
 
+
 class Blockchain:
 
     # This function is created to create the blockchain
@@ -37,22 +38,24 @@ class Blockchain:
         encoded_block = json.dumps(block).encode()
         # print(encoded_block)
         return hashlib.sha256(encoded_block).hexdigest()
-    
-    #this function is used to transfer property 
-    #pid->sid => pid->rid
-    def propTransfer(self,sid,pid,rid):
+
+    # this function is used to transfer property
+    # pid->sid => pid->rid
+    def propTransfer(self, sid, pid, rid):
         if pid in self.mp:
             if self.mp[pid] == sid:
-                self.mp[pid]=rid
+                self.mp[pid] = rid
                 return True
-            else: return False
-        else: return False
-    
-    #this is used to add property to our user
+            else:
+                return False
+        else:
+            return False
+
+    # this is used to add property to our user
     def addProperty(self, sid, pid):
         if pid in self.mp:
             return False
-        self.mp[pid]=sid
+        self.mp[pid] = sid
         # yaha add ho rha hai
         return True
 

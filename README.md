@@ -1,1 +1,2 @@
-# Blockchain_LMS
+# BlockChainTech
+BlockChain implementation using DPOS consensus
