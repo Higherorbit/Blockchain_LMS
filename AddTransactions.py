@@ -1,25 +1,35 @@
 import datetime
-
 # from BlockChainTech-main.BlockChain import Blockchain
 
 # This function takes input(unverified transactions) from the user
 
-#adding user here
-def inputPropertyDetails(blockchain):  
+# adding user here
+
+
+def inputPropertyDetails(blockchain):
     while True:
         print("\n>>> Print Owner Details")
-        SID = input("\n>>> Seller ID  : ")
+        SID = input("\n>>> User Name  : ")
         PID = input("\n>>> Property ID  : ")
-        b=False
-        b=blockchain.addProperty(SID,PID)
+        if SID == "" or PID == "":
+            print("\nEnter valid User Name or PID")
+            continue
+        b = False
+        b = blockchain.addProperty(SID, PID)
         if b == False:
-            print("\nInvalid Prop ID or SID")
-        else :
+            print("\nInvalid Prop ID or User Name")
+        else:
             print("\n Added Successfully!!!!!")
-        
-        y_or_n = input("\nD O N E!\n>>> Add more?[y/n]")
-        if y_or_n == 'n':
-            return 
+
+        while True:
+            y_or_n = input("\n>>> Add more?[y/n]")
+            if y_or_n == 'n':
+                return
+            elif y_or_n == 'y':
+                break
+            else:
+                print("Enter either y or n!!")
+
 
 def inputTransactions(blockchain, leftover_trns):
 
@@ -51,19 +61,22 @@ def inputTransactions(blockchain, leftover_trns):
                 print("\nTransaction already exists! Please Try again.")
                 continue
             break
-        
-        SID = input("\n>>> Seller ID: ")
-        PID = input("\n>>> Property ID: ")
-        BID = input("\n>>> Buyer ID: ")
 
-        if BID==SID:
+        SID = input("\n>>> Seller Name: ")
+        PID = input("\n>>> Property ID: ")
+        BID = input("\n>>> Buyer Name: ")
+        if SID == "" or PID == "" or BID == "":
+            print("Please enter Valid Seller Name or PID or Buyer Name")
+            continue
+
+        if BID == SID:
             print("Buyer and Seller cant be same, wtf")
             continue
 
         # flag1 = False
         flag1 = blockchain.propTransfer(SID, PID, BID)
         if flag1 is False:
-            print("Invalid PID or SID or BID")
+            print("Invalid Seller Name or PID or Buyer Name")
         else:
             input_transactions.append((
                 trn_id,
@@ -72,11 +85,14 @@ def inputTransactions(blockchain, leftover_trns):
                 BID,
                 str(datetime.datetime.now().strftime("%Y-%m-%d AT %H:%M %p"))
             ))
-        
-        y_or_n = input("\nD O N E!\n>>> Add more?[y/n]")
-
-        if y_or_n == 'n':
-            return input_transactions
+        while True:
+            y_or_n = input("\n>>> Add more?[y/n]")
+            if y_or_n == 'n':
+                return input_transactions
+            elif y_or_n == 'y':
+                break
+            else:
+                print("Enter either y or n!!")
 
 
 # This function verifies the transactions and adds them to the block(3 transactions per block)

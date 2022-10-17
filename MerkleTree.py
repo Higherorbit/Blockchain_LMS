@@ -71,15 +71,3 @@ class MerkleTree:
     def getRootHash(self) -> str:
         return self.root.value
 
-
-# def mixmerkletree() -> None:
-#     elems = ["Mix", "Merkle", "Tree", "From", "Onur Atakan ULUSOY", "https://github.com/onuratakan/mixmerkletree", "GO"]
-#     print("Inputs: ")
-#     print(*elems, sep=" | ")
-#     print("")
-#     mtree = MerkleTree(elems)
-#     print("Root Hash: "+mtree.getRootHash()+"\n")
-#     mtree.printTree()
-
-
-# mixmerkletree()
