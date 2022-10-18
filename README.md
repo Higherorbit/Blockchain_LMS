@@ -1,11 +1,11 @@
 # Land Management System using Blockchain
 
 ## Group Details
-## Samandeep Singh (2020A7PS0065H)
-## Vedant Mathur (2020A7PS0065H)
-## Sri Harshitha Ronda (2020A3PS0496H)
+### Samandeep Singh (2020A7PS0065H)
+### Vedant Mathur (2020A7PS0065H)
+### Sri Harshitha Ronda (2020A3PS0496H)
 
-## The consensus algorithm used is Delegated Proof of Stake(DPoS)
+### The consensus algorithm used is Delegated Proof of Stake(DPoS)
 
 ### --------------------COMPONENTS-------------------
 ## 1. Block
