@@ -21,14 +21,14 @@ class Blockchain:
         self.np = 0
     # This function is created to add blocks into the chain.
 
-    def create_block(self, previous_hash, dpos, tr_list):
+    def create_block(self, previous_hash, dpos, tr_list, tr_list2):
         mtree = MerkleTree.MerkleTree(tr_list)
-        t=str(datetime.datetime.now().strftime("%Y-%m-%d AT %H:%M %p"))
+        t = str(datetime.datetime.now().strftime("%Y-%m-%d AT %H:%M %p"))
         block = {
             'index': len(self.chain) + 1,
             'previous_hash': previous_hash,
             'proof': dpos,
-            'transactions_list': tr_list,
+            'transactions_list': tr_list2,
             'roothash': mtree.getRootHash(),
             'Timestamp': t
         }
@@ -66,11 +66,13 @@ class Blockchain:
 
     # this is used to add property to our user
     def addProperty(self, sid, pid):
-        if pid in self.mp:
+        if pid in self.mp:  # pid is already assigned to some other user
             return False
-        self.mp[pid] = sid
-        if sid not in self.user:
+        self.mp[pid] = sid  # assigned the property pid to sid
+
+        if sid not in self.user:    # need to tell user map ki sid ke pas 0 property hai
             self.user[sid] = 0
+
         self.user[sid] += 1
         self.np += 1  # this is the count of total propety we have | for threshold calculations
         # yaha add ho rha hai
@@ -129,8 +131,6 @@ class Blockchain:
             s = ''.join(tup)
             main_list.append(s)
 
-        
-
         if len(self.chain) == 0:
             previous_hash = self.hash('Genesis Block')
         else:
@@ -138,4 +138,4 @@ class Blockchain:
 
         dpos = self.delegated_proof_of_stake()
 
-        self.create_block(previous_hash, dpos, main_list)
+        self.create_block(previous_hash, dpos, main_list, tr_list)
