@@ -3,7 +3,7 @@
 # Group Details
 # Samandeep Singh (2020A7PS0065H)
 # Vedant Mathur (2020A7PS0065H)
-# Sri Harhitha Ronda (2020A3PS0496H)
+# Sri Harshitha Ronda (2020A3PS0496H)
 
 ## Land Management System using Blockchain
 
