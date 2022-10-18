@@ -25,7 +25,7 @@ def viewTransactions(blockchain):
                 addSpaces(transaction[1], len("Seller ID")),
                 addSpaces(transaction[2], len("Property ID")),
                 addSpaces(transaction[3], len("Buyer ID")),
-                addSpaces(transaction[4:], len("Timestamp")),
+                addSpaces(transaction[4], len("Timestamp")),
                 transaction[3]
             ))
 
@@ -48,6 +48,6 @@ def viewTransactionsbyPID(blockchain, pid):
                     addSpaces(transaction[1], len("Seller ID")),
                     addSpaces(transaction[2], len("Property ID")),
                     addSpaces(transaction[3], len("Buyer ID")),
-                    addSpaces(transaction[4:], len("Timestamp")),
+                    addSpaces(transaction[4], len("Timestamp")),
                     transaction[3]
                 ))

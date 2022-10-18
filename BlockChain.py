@@ -21,16 +21,24 @@ class Blockchain:
         self.np = 0
     # This function is created to add blocks into the chain.
 
-    def create_block(self, previous_hash, dpos, tr_list):
-        mtree = MerkleTree.MerkleTree(tr_list)
+    def create_block(self, previous_hash, dpos, tr_list1,tr_list2):
+        if len(self.chain) == 0:
+            nonce  = 1
+        else :
+            nonce = self.puzzle(self.latest_block()['Nonce'])
+
+        
+        
+        mtree = MerkleTree.MerkleTree(tr_list1)
         t=str(datetime.datetime.now().strftime("%Y-%m-%d AT %H:%M %p"))
         block = {
             'index': len(self.chain) + 1,
             'previous_hash': previous_hash,
             'proof': dpos,
-            'transactions_list': tr_list,
+            'transactions_list': tr_list2,
             'roothash': mtree.getRootHash(),
-            'Timestamp': t
+            'Timestamp': t,
+            'Nonce' : nonce
         }
         temp_list = list(self.chain)
         temp_list.append(block)
@@ -40,7 +48,21 @@ class Blockchain:
 
     def latest_block(self):
         return self.chain[-1]
+    
 
+    def puzzle(self, previous_proof):
+        nonce = 1
+        is_proof_valid = False
+
+        while is_proof_valid is False:
+            hash_operation = hashlib.sha256(
+                str(nonce*2 - previous_proof*2).encode()).hexdigest()
+            if hash_operation[:2] == '00':
+                is_proof_valid = True
+            else:
+                nonce += 1
+             
+        return nonce
     # This function used SHA256 hashing algorithm to hash a block and return the hash value
     def hash(self, block):
         encoded_block = json.dumps(block).encode()
@@ -138,4 +160,4 @@ class Blockchain:
 
         dpos = self.delegated_proof_of_stake()
 
-        self.create_block(previous_hash, dpos, main_list)
+        self.create_block(previous_hash, dpos, main_list,tr_list)
