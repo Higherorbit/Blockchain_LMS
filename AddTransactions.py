@@ -1,15 +1,9 @@
 import datetime
-# from BlockChainTech-main.BlockChain import Blockchain
-
-# This function takes input(unverified transactions) from the user
-
-# adding user here
-
 
 def inputPropertyDetails(blockchain):
     while True:
         print("\n>>> Print Owner Details")
-        SID = input("\n>>> User Name  : ")
+        SID = input("\n>>> User Name/ID  : ")
         PID = input("\n>>> Property ID  : ")
         if SID == "" or PID == "":
             print("\nEnter valid User Name or PID")
@@ -40,9 +34,10 @@ def inputTransactions(blockchain, leftover_trns):
 
         while True:
             trn_id = input("\n>>> Transaction id : ")
-            # need to have a mechanism to check if that transaction exists
 
+            # need to have a mechanism to check if that transaction exists
             exists = False
+            #first of all checking in every transaction of every block of the blockchain if the same transaction exists before or not
             for block in blockchain.chain:
                 for transaction in block["transactions_list"]:
                     if trn_id == transaction[0]:
@@ -62,11 +57,11 @@ def inputTransactions(blockchain, leftover_trns):
                 continue
             break
 
-        SID = input("\n>>> Seller Name: ")
+        SID = input("\n>>> Seller Name/ID: ")
         PID = input("\n>>> Property ID: ")
-        BID = input("\n>>> Buyer Name: ")
+        BID = input("\n>>> Buyer Name/ID: ")
         if SID == "" or PID == "" or BID == "":
-            print("Please enter Valid Seller Name or PID or Buyer Name")
+            print("Please enter Valid Seller Name/ID or PID or Buyer Name/ID")
             continue
 
         if BID == SID:
@@ -76,7 +71,7 @@ def inputTransactions(blockchain, leftover_trns):
         # flag1 = False
         flag1 = blockchain.propTransfer(SID, PID, BID)
         if flag1 is False:
-            print("Invalid Seller Name or PID or Buyer Name")
+            print("Invalid Seller Name/ID or PID or Buyer Name/ID")
         else:
             input_transactions.append((
                 trn_id,
@@ -94,8 +89,7 @@ def inputTransactions(blockchain, leftover_trns):
             else:
                 print("Enter either y or n!!")
 
-
-# This function verifies the transactions and adds them to the block(3 transactions per block)
+# This function verifies the transactions and adds them to the block(2 transactions per block)
 def addTransactions(input_transactions, blockchain):
 
     count = len(input_transactions)

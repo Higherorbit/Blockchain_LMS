@@ -88,11 +88,13 @@ class Blockchain:
 
     # this is used to add property to our user
     def addProperty(self, sid, pid):
-        if pid in self.mp:
+        if pid in self.mp:  # pid is already assigned to some other user
             return False
-        self.mp[pid] = sid
-        if sid not in self.user:
+        self.mp[pid] = sid  # assigned the property pid to sid
+
+        if sid not in self.user:    # need to tell user map ki sid ke pas 0 property hai
             self.user[sid] = 0
+
         self.user[sid] += 1
         self.np += 1  # this is the count of total propety we have | for threshold calculations
         # yaha add ho rha hai
@@ -150,8 +152,6 @@ class Blockchain:
             tup = tr_list[i]
             s = ''.join(tup)
             main_list.append(s)
-
-        
 
         if len(self.chain) == 0:
             previous_hash = self.hash('Genesis Block')
