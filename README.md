@@ -6,7 +6,7 @@
 ### --------------------FUNCTIONS-------------------
 
 ### 1. Create_Block
-#### Create a new Block as soon as minimum threshold(2) of transactions occur
+Create a new Block as soon as minimum threshold(2) of transactions occur
 
 ### 2. Create_Node
 #### Register new users with preowned property
